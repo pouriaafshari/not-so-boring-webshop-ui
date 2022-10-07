@@ -5,17 +5,107 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./img/logo" type="image/icon type">
+
+    <link rel="stylesheet" type="text/css" href="./css/normalize.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="./css/app.css" media="screen" />
     <title>Not So Boring</title>
 </head>
 <body>
-    
-    <div class="item">
-        <div class="item-image"></div>
-        <div class="item-title"></div>
-        <div class="item-description"></div>
-        <div class="item-price"></div>
-        <div class="item-rating"></div>
+
+    <div id="logo">
+        <img src="./img/logo" alt="not so boring" style="width: 50px;">
+        <p>Not So Boring</p>
+    </div>
+
+    <div id="item-container">
+        <div class="item">
+            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
+                <img class="" src="./img/tst.webp">
+                <img class="" src="./img/tst2.webp">  
+            </div>
+            <div class="item-title">Black shirt</div>
+            <div class="item-rating"><span>&#9733;</span> 6/10</div>
+            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            <div class="item-price">1,300 <span>&euro;</span></div>
+        </div>
+        <div class="item">
+            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
+                <img class="" src="./img/tst.webp">
+                <img class="" src="./img/tst2.webp">  
+            </div>
+            <div class="item-title">Black shirt</div>
+            <div class="item-rating"><span>&#9733;</span> 6/10</div>
+            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            <div class="item-price">1,300 <span>&euro;</span></div>
+        </div>
+        <div class="item">
+            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
+                <img class="" src="./img/tst.webp">
+                <img class="" src="./img/tst2.webp">  
+            </div>
+            <div class="item-title">Black shirt</div>
+            <div class="item-rating"><span>&#9733;</span> 6/10</div>
+            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            <div class="item-price">1,300 <span>&euro;</span></div>
+        </div>
+        <div class="item">
+            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
+                <img class="" src="./img/tst.webp">
+                <img class="" src="./img/tst2.webp">  
+            </div>
+            <div class="item-title">Black shirt</div>
+            <div class="item-rating"><span>&#9733;</span> 6/10</div>
+            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            <div class="item-price">1,300 <span>&euro;</span></div>
+        </div>
+        <div class="item">
+            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
+                <img class="" src="./img/tst.webp">
+                <img class="" src="./img/tst2.webp">  
+            </div>
+            <div class="item-title">Black shirt</div>
+            <div class="item-rating"><span>&#9733;</span> 6/10</div>
+            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            <div class="item-price">1,300 <span>&euro;</span></div>
+        </div>
+        <div class="item">
+            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
+                <img class="" src="./img/tst.webp">
+                <img class="" src="./img/tst2.webp">  
+            </div>
+            <div class="item-title">Black shirt</div>
+            <div class="item-rating"><span>&#9733;</span> 6/10</div>
+            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+            <div class="item-price">1,300 <span>&euro;</span></div>
+        </div>
     </div>
 
 </body>
+
+
+<script>
+
+    function Show_2nd_image(elem) 
+    {
+        setTimeout (
+            () => 
+            {
+                elem.children[0].classList.add('item-1st-image-hide');
+                elem.children[1].classList.add('item-2nd-image-show');
+            }, 100
+        )
+    }
+    function Hide_2nd_image(elem) 
+    {
+        setTimeout (
+            () => 
+            {
+                elem.children[0].classList.remove('item-1st-image-hide');
+                elem.children[1].classList.remove('item-2nd-image-show');
+            }, 100
+        )
+    }
+</script>
+
+
 </html>
