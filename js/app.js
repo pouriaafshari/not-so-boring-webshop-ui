@@ -98,7 +98,7 @@ function GenerateItem(n)
     }
 }
 
-GenerateItem(15);
+GenerateItem(20);
 
 //Generate Button function
 
@@ -114,7 +114,7 @@ function GenerateButton()
         GenerateItem(GenerateNumber.value);
         ItemContainer.classList.remove('hide-element');
         ShowPageItems(1);
-    }, 400);
+    }, 300);
 }
 
 
@@ -199,3 +199,59 @@ function handlePrev()
         ShowPageItems(CurrentPage - 1);
     }, 400);
 }
+
+
+
+//Search Function
+
+function searchProductsByName()
+{
+    const SearchBar = document.getElementById('search');
+    const Items = document.querySelectorAll('.item');
+    const SearchValue = SearchBar.value.toLowerCase();
+    
+    document.getElementById('page-nav').style.display = 'none';
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('result').children[0].innerText = 'Result for "' + SearchValue + '"';
+
+    const ItemContainer = document.getElementById('item-container');
+
+    ItemContainer.classList.add('hide-element');
+
+    setTimeout( ()=> 
+    {
+        ItemContainer.classList.remove('hide-element');
+
+        for (let i = 0; i < Items.length; i++) 
+        {
+            if (Items[i].innerText.toLowerCase().indexOf(SearchValue) == -1) 
+            {
+                Items[i].style.display = 'none';
+            }   
+            else
+            {
+                Items[i].style.display = 'block';
+            }
+        }
+
+        if (SearchValue == '') 
+        {
+            ShowPageItems(1);
+            document.getElementById('page-nav').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+        }
+
+    }, 400);
+}
+
+//Search with Enter key
+
+document.addEventListener('keypress', function (e) 
+{
+    if (e.keyCode === 13 || e.which === 13) {
+        e.preventDefault();
+        searchProductsByName();
+        return false;
+   }
+
+});

@@ -19,8 +19,17 @@
 
     <div id="generator-bar">
         <span>Generate item :</span>
-        <input id="item-generate-number" type="number" min="0" value="10">
+        <input id="item-generate-number" type="number" min="0" value="20">
         <button onclick="GenerateButton()">Generate</button>
+    </div>
+
+    <div id="search-bar">
+        <input type="text" id="search" placeholder="Search">
+        <button onclick="searchProductsByName()">Go</button>
+    </div>
+
+    <div id="result" style="display: none;">
+        <h3>Result for "book"</h3>
     </div>
 
     <div id="item-container"></div>

@@ -25,6 +25,20 @@ body
 }
 
 
+#search-bar
+{
+    text-align: center;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0.9em;
+    border-bottom: 1px rgb(206, 206, 206) solid;
+}
+
+#result
+{
+    text-align: center;
+}
+
 #item-container
 {
     width: 80vw;
@@ -44,6 +58,7 @@ body
 {
     width: 300px;
     margin: 2px 2px;
+    margin-bottom: 15px;
     display: inline-block;
 }
 
