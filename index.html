@@ -19,7 +19,11 @@
 
     <div id="generator-bar">
         <span>Generate item :</span>
-        <input id="item-generate-number" type="number" min="0" value="20">
+        <input id="item-generate-number" type="number" min="0" max="100" value="20">
+        <input type="radio" id="memename" name="nametype" value="Meme" checked>
+        <label for="memename">Meme name</label>
+        <input type="radio" id="randomname" name="nametype" value="Random">
+        <label for="randomname">Random name</label>
         <button onclick="GenerateButton()">Generate</button>
     </div>
 

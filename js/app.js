@@ -25,6 +25,28 @@ function Hide_2nd_image(elem)
 }
 
 
+//Get images from API
+
+const APIurl = 'https://api.imgflip.com/get_memes';
+let MEMEurls = [];
+let MEMEnames = [];
+
+async function RandomMEME()
+{
+    const Response = await fetch(APIurl);
+    const Data = await Response.json();
+    console.log(Data);
+    if (Response.ok)
+    {
+        for (let i = 0; i < 100; i++) 
+        {
+            MEMEurls[i] = Data.data.memes[i].url.toString();
+            MEMEnames[i] = Data.data.memes[i].name.toString();
+        }
+    }
+}
+
+
 //Generate random items
 
 var ColorSet = 
@@ -47,10 +69,12 @@ var DescriptionSet =
 
 function GenerateItem(n) 
 {
+    console.log(RandomMEME());
     const ItemContainer = document.getElementById('item-container');
 
     ItemContainer.innerHTML = '';
 
+    let j = 0;
     for (let i = 0; i < n; i++) 
     {
         const Item = document.createElement('div');
@@ -68,12 +92,22 @@ function GenerateItem(n)
         ItemImage.setAttribute('onmouseenter', 'Show_2nd_image(this)');
         ItemImage.setAttribute('onmouseleave', 'Hide_2nd_image(this)');
 
-        ItemImage1.setAttribute('src', './img/tst.webp');
-        ItemImage2.setAttribute('src', './img/tst2.webp');
+        ItemImage1.setAttribute('src', MEMEurls[j]);
+        ItemImage2.setAttribute('src', MEMEurls[j+1]);
 
         ItemTitle.setAttribute('class', 'item-title');
-        var ItemSetIndex = Math.floor(Math.random() * ItemSet.length);
-        ItemTitle.innerText = ColorSet[Math.floor(Math.random() * ColorSet.length)] + ' ' + ItemSet[ItemSetIndex];
+
+        if (document.getElementById('randomname').checked)
+        {
+            var ItemSetIndex = Math.floor(Math.random() * ItemSet.length);
+            ItemTitle.innerText = ColorSet[Math.floor(Math.random() * ColorSet.length)] + ' ' + ItemSet[ItemSetIndex];
+        }
+        if (document.getElementById('memename').checked)
+        {
+            var ItemSetIndex = Math.floor(Math.random() * ItemSet.length);
+            ItemTitle.innerText = MEMEnames[j] + ', ' + MEMEnames[j+1];
+        }
+        
 
         ItemRating.setAttribute('class', 'item-rating');
         ItemRating.innerHTML = '<span>&#9733;</span> ' + Math.floor(Math.random() * 11).toString() + '/10';
@@ -95,10 +129,12 @@ function GenerateItem(n)
         Item.appendChild(ItemPrice);
 
         ItemContainer.appendChild(Item);
+
+        j = j+2;
+        if (j >= 100) {j = 0};
     }
 }
 
-GenerateItem(20);
 
 //Generate Button function
 
@@ -158,7 +194,7 @@ function ShowPageItems(n)
     CurrentPage = n;
     CountPages(n);
 }
-ShowPageItems(1);
+
 
 function CountPages(n)
 {
@@ -255,3 +291,20 @@ document.addEventListener('keypress', function (e)
    }
 
 });
+
+
+
+
+
+//Call Functions
+
+window.onload = ()=>
+{
+    RandomMEME(); 
+
+    setTimeout( ()=> 
+    {
+        GenerateItem(20);
+        ShowPageItems(1);
+    }, 100);
+}
