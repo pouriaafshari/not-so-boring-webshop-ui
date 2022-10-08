@@ -17,6 +17,13 @@
         <p>Not So Boring</p>
     </div>
 
+    <div id="generator-bar">
+        <span>Generate item :</span>
+        <input id="item-generate-number" type="number" min="0">
+        <button onclick="GenerateButton()">Generate</button>
+    </div>
+
+
     <div id="item-container">
         <div class="item">
             <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
@@ -82,30 +89,6 @@
 
 </body>
 
-
-<script>
-
-    function Show_2nd_image(elem) 
-    {
-        setTimeout (
-            () => 
-            {
-                elem.children[0].classList.add('item-1st-image-hide');
-                elem.children[1].classList.add('item-2nd-image-show');
-            }, 100
-        )
-    }
-    function Hide_2nd_image(elem) 
-    {
-        setTimeout (
-            () => 
-            {
-                elem.children[0].classList.remove('item-1st-image-hide');
-                elem.children[1].classList.remove('item-2nd-image-show');
-            }, 100
-        )
-    }
-</script>
-
+<script src="./js/app.js"></script>
 
 </html>
