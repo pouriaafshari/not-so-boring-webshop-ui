@@ -19,74 +19,17 @@
 
     <div id="generator-bar">
         <span>Generate item :</span>
-        <input id="item-generate-number" type="number" min="0">
+        <input id="item-generate-number" type="number" min="0" value="10">
         <button onclick="GenerateButton()">Generate</button>
     </div>
 
+    <div id="item-container"></div>
 
-    <div id="item-container">
-        <div class="item">
-            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
-                <img class="" src="./img/tst.webp">
-                <img class="" src="./img/tst2.webp">  
-            </div>
-            <div class="item-title">Black shirt</div>
-            <div class="item-rating"><span>&#9733;</span> 6/10</div>
-            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-            <div class="item-price">1,300 <span>&euro;</span></div>
-        </div>
-        <div class="item">
-            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
-                <img class="" src="./img/tst.webp">
-                <img class="" src="./img/tst2.webp">  
-            </div>
-            <div class="item-title">Black shirt</div>
-            <div class="item-rating"><span>&#9733;</span> 6/10</div>
-            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-            <div class="item-price">1,300 <span>&euro;</span></div>
-        </div>
-        <div class="item">
-            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
-                <img class="" src="./img/tst.webp">
-                <img class="" src="./img/tst2.webp">  
-            </div>
-            <div class="item-title">Black shirt</div>
-            <div class="item-rating"><span>&#9733;</span> 6/10</div>
-            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-            <div class="item-price">1,300 <span>&euro;</span></div>
-        </div>
-        <div class="item">
-            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
-                <img class="" src="./img/tst.webp">
-                <img class="" src="./img/tst2.webp">  
-            </div>
-            <div class="item-title">Black shirt</div>
-            <div class="item-rating"><span>&#9733;</span> 6/10</div>
-            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-            <div class="item-price">1,300 <span>&euro;</span></div>
-        </div>
-        <div class="item">
-            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
-                <img class="" src="./img/tst.webp">
-                <img class="" src="./img/tst2.webp">  
-            </div>
-            <div class="item-title">Black shirt</div>
-            <div class="item-rating"><span>&#9733;</span> 6/10</div>
-            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-            <div class="item-price">1,300 <span>&euro;</span></div>
-        </div>
-        <div class="item">
-            <div class="item-image" onmouseenter="Show_2nd_image(this)" onmouseleave="Hide_2nd_image(this)">
-                <img class="" src="./img/tst.webp">
-                <img class="" src="./img/tst2.webp">  
-            </div>
-            <div class="item-title">Black shirt</div>
-            <div class="item-rating"><span>&#9733;</span> 6/10</div>
-            <div class="item-description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-            <div class="item-price">1,300 <span>&euro;</span></div>
-        </div>
+    <div id="page-nav">
+        <button id="prev" onclick="handlePrev()">Prev</button>
+        <p style="display: inline;" id="pages"></p>
+        <button id="next" onclick="handleNext()">Next</button>
     </div>
-
 </body>
 
 <script src="./js/app.js"></script>

@@ -98,6 +98,7 @@ function GenerateItem(n)
     }
 }
 
+GenerateItem(15);
 
 //Generate Button function
 
@@ -112,5 +113,89 @@ function GenerateButton()
     {
         GenerateItem(GenerateNumber.value);
         ItemContainer.classList.remove('hide-element');
+        ShowPageItems(1);
+    }, 400);
+}
+
+
+//Page functions
+
+var CurrentPage = 1;
+var TotalPages = 0;
+
+function HideAllItems() 
+{
+    const ItemContainer = document.getElementById('item-container');
+
+    for (let i = 0; i < ItemContainer.childElementCount; i++) 
+    {
+        ItemContainer.children[i].style.display='none';
+    }    
+}
+
+function ShowPageItems(n) 
+{
+    const ItemContainer = document.getElementById('item-container');
+
+    HideAllItems()
+
+    for (let i = (n-1)*10; i < n*10; i++) 
+    {
+        if (i < ItemContainer.childElementCount)
+        {
+            ItemContainer.children[i].style.display='block';
+        }
+    }
+
+    //Disable Next and Prev button
+
+    if (n == TotalPages) {document.getElementById('next').disabled = true;}
+    else {document.getElementById('next').disabled = false;}
+
+    if (n == 1) {document.getElementById('prev').disabled = true;}
+    else {document.getElementById('prev').disabled = false;}
+
+    CurrentPage = n;
+    CountPages(n);
+}
+ShowPageItems(1);
+
+function CountPages(n)
+{
+    const ItemContainer = document.getElementById('item-container');
+    const Pages = document.getElementById('pages');
+
+    Pages.innerHTML = '';
+    TotalPages = Math.round(ItemContainer.childElementCount/10);
+
+    for (let i = 0; i < TotalPages; i++) 
+    {
+        if (i+1 == n) { Pages.innerHTML += ' <b>' + (i+1).toString() + '</b> '; }
+        else { Pages.innerHTML += ' ' + (i+1).toString() + ' '; }
+    }
+}
+
+function handleNext()
+{
+    const ItemContainer = document.getElementById('item-container');
+
+    ItemContainer.classList.add('hide-element');
+
+    setTimeout( ()=> 
+    {
+        ItemContainer.classList.remove('hide-element');
+        ShowPageItems(CurrentPage + 1);
+    }, 400);
+}
+function handlePrev()
+{
+    const ItemContainer = document.getElementById('item-container');
+
+    ItemContainer.classList.add('hide-element');
+
+    setTimeout( ()=> 
+    {
+        ItemContainer.classList.remove('hide-element');
+        ShowPageItems(CurrentPage - 1);
     }, 400);
 }
