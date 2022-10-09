@@ -363,8 +363,6 @@ window.addEventListener('scroll', () =>
 
 //Call Functions
 
-document.getElementById('content').classList.add('hide-element');
-
 window.onload = ()=>
 {
     RandomMEME(); 
@@ -376,7 +374,7 @@ window.onload = ()=>
 
         productList.reduce(determineTopProduct);
         SetTopProduct();
-    }, 100);
+    }, 300);
 
     setTimeout( ()=> 
     {
