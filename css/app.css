@@ -7,6 +7,12 @@ body
 {
     text-align: center;
     margin-top: 20px;
+    transition: 1s;
+    opacity: 0;
+}
+.visable
+{
+    opacity: 1 !important;
 }
 
 #generator-bar
@@ -235,6 +241,16 @@ label
 {
     margin: 50px 0;
     text-align: center;
+}
+#page-nav p
+{
+    color: gray;
+    letter-spacing: 5px;
+}
+#page-nav p b
+{
+    color: black!important;
+    font-size: 1.4em;
 }
 #prev
 {

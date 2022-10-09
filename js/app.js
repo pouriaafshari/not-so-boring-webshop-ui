@@ -350,11 +350,20 @@ document.addEventListener('keypress', function (e)
 
 });
 
+//Hide Logo when scroll down
+
+window.addEventListener('scroll', () =>
+{
+    const Header = document.getElementById('logo');
+    Header.classList.toggle('visable', window.scrollY == 0);
+})
 
 
 
 
 //Call Functions
+
+document.getElementById('content').classList.add('hide-element');
 
 window.onload = ()=>
 {
@@ -368,4 +377,9 @@ window.onload = ()=>
         productList.reduce(determineTopProduct);
         SetTopProduct();
     }, 100);
+
+    setTimeout( ()=> 
+    {
+        document.getElementById('content').classList.remove('hide-element');
+    }, 800);
 }
