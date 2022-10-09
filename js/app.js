@@ -138,12 +138,28 @@ function GenerateItem(n)
         Item.setAttribute('class', 'item');
         Item.setAttribute('id', i.toString());
 
+        console.log(MEMEurls[j]);
         ItemImage.setAttribute('class', 'item-image');
         ItemImage.setAttribute('onmouseenter', 'Show_2nd_image(this)');
         ItemImage.setAttribute('onmouseleave', 'Hide_2nd_image(this)');
 
-        ItemImage1.setAttribute('src', MEMEurls[j]);
-        ItemImage2.setAttribute('src', MEMEurls[j+1]);
+        if (MEMEurls[j] == undefined)
+        {
+            ItemImage1.setAttribute('src', './img/tst.webp');
+        }
+        else
+        {
+            ItemImage1.setAttribute('src', MEMEurls[j]);
+        }
+
+        if (MEMEurls[j+1] == undefined)
+        {
+            ItemImage2.setAttribute('src', './img/tst2.webp');
+        }
+        else
+        {
+            ItemImage2.setAttribute('src', MEMEurls[j+1]);
+        }
 
         ItemTitle.setAttribute('class', 'item-title');
 
