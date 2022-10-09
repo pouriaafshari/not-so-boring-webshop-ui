@@ -24,6 +24,28 @@ function Hide_2nd_image(elem)
     )
 }
 
+function Top_Show_2nd_image(elem) 
+{
+    setTimeout (
+        () => 
+        {
+            elem.children[0].classList.add('top-item-1st-image-hide');
+            elem.children[1].classList.add('top-item-2nd-image-show');
+        }, 100
+    )
+}
+
+function Top_Hide_2nd_image(elem) 
+{
+    setTimeout (
+        () => 
+        {
+            elem.children[0].classList.remove('top-item-1st-image-hide');
+            elem.children[1].classList.remove('top-item-2nd-image-show');
+        }, 200
+    )
+}
+
 
 //Get images from API
 
@@ -35,7 +57,7 @@ async function RandomMEME()
 {
     const Response = await fetch(APIurl);
     const Data = await Response.json();
-    console.log(Data);
+
     if (Response.ok)
     {
         for (let i = 0; i < 100; i++) 
@@ -46,6 +68,34 @@ async function RandomMEME()
     }
 }
 
+
+//Product list object
+var productList = [];
+
+//Top Product function
+var TopProductId = 0;
+function  determineTopProduct(Top, Current)
+{
+    if (Current.rating > Top.rating) {TopProductId = Current.id; return Current}
+    else {TopProductId = Top.id; return Top}
+}
+
+function SetTopProduct()
+{
+    const Image1URL = document.getElementById(TopProductId.toString()).children[0].children[0].getAttribute('src');
+    const Image2URL = document.getElementById(TopProductId.toString()).children[0].children[1].getAttribute('src');
+    const ProductTitle = document.getElementById(TopProductId.toString()).children[1].innerText;
+    const ProductRating = document.getElementById(TopProductId.toString()).children[2].innerHTML;
+    const ProductDescription = document.getElementById(TopProductId.toString()).children[3].innerText;
+    const ProductPrice = document.getElementById(TopProductId.toString()).children[4].innerHTML;
+
+    document.getElementById('top-image').children[0].setAttribute('src', Image1URL);
+    document.getElementById('top-image').children[1].setAttribute('src', Image2URL);
+    document.getElementById('top-title').innerText = ProductTitle;
+    document.getElementById('top-rating').innerHTML = ProductRating;
+    document.getElementById('top-description').innerText = ProductDescription;
+    document.getElementById('top-price').innerHTML = ProductPrice;
+}
 
 //Generate random items
 
@@ -69,7 +119,6 @@ var DescriptionSet =
 
 function GenerateItem(n) 
 {
-    console.log(RandomMEME());
     const ItemContainer = document.getElementById('item-container');
 
     ItemContainer.innerHTML = '';
@@ -86,7 +135,8 @@ function GenerateItem(n)
         const ItemDescription = document.createElement('div');
         const ItemPrice = document.createElement('div');
 
-        Item.setAttribute('class', 'item')
+        Item.setAttribute('class', 'item');
+        Item.setAttribute('id', i.toString());
 
         ItemImage.setAttribute('class', 'item-image');
         ItemImage.setAttribute('onmouseenter', 'Show_2nd_image(this)');
@@ -110,7 +160,8 @@ function GenerateItem(n)
         
 
         ItemRating.setAttribute('class', 'item-rating');
-        ItemRating.innerHTML = '<span>&#9733;</span> ' + Math.floor(Math.random() * 11).toString() + '/10';
+        var RatingNumber = Math.floor(Math.random() * 11);
+        ItemRating.innerHTML = '<span>&#9733;</span> ' + RatingNumber.toString() + '/10';
 
         ItemDescription.setAttribute('class', 'item-description');
         ItemDescription.innerText = DescriptionSet[ItemSetIndex];
@@ -130,6 +181,8 @@ function GenerateItem(n)
 
         ItemContainer.appendChild(Item);
 
+        productList[i] = { rating: RatingNumber, id: i};
+
         j = j+2;
         if (j >= 100) {j = 0};
     }
@@ -144,12 +197,17 @@ function GenerateButton()
     const ItemContainer = document.getElementById('item-container');
 
     ItemContainer.classList.add('hide-element');
+    document.getElementById('top-div').classList.add('hide-element');
 
     setTimeout( ()=> 
     {
         GenerateItem(GenerateNumber.value);
         ItemContainer.classList.remove('hide-element');
+        document.getElementById('top-div').classList.remove('hide-element');
         ShowPageItems(1);
+
+        productList.reduce(determineTopProduct);
+        SetTopProduct();
     }, 300);
 }
 
@@ -306,5 +364,8 @@ window.onload = ()=>
     {
         GenerateItem(20);
         ShowPageItems(1);
+
+        productList.reduce(determineTopProduct);
+        SetTopProduct();
     }, 100);
 }
